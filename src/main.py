@@ -2,10 +2,10 @@
 
 from home_brains import *
 
-x = ShellInput("echo 1")
-y = ShellInput("echo 1")
-w = WebInput("http://export.yandex.ru/bar/reginfo.xml")
-err = WebInput("http://zzz.yandex.ru/bar/reginfo.xml")
+x = ShellSource("echo 1")
+y = ShellSource("echo 1")
+w = WebSource("http://export.yandex.ru/bar/reginfo.xml")
+err = WebSource("http://zzz.yandex.ru/bar/reginfo.xml")
 
 
 a = AndPipe([x, y])
