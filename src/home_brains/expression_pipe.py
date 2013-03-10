@@ -19,7 +19,7 @@ class ExpressionPipe(Pipe):
             args = map(lambda x: int(x.value), self.inputs)
 
             # yes I know eval is evil.
-            # but i control expr, and supply it with user input restricted to integers.
+            # but i control expr and supply it with user input restricted to integers.
             self.value = eval ( self.expr.format(*args) )
 
         super(ExpressionPipe, self).process()
