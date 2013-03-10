@@ -8,6 +8,9 @@ from home_brains import *
 
 
 # First create some data sources to play with:
+# A variable which evaluates to 1 if google.com is accessible
+ping = ShellSource("ping google.com -c 1 | grep '1 received' | wc -l")
+
 # An xml with recent weather and traffic reports
 web = WebSource("http://export.yandex.ru/bar/reginfo.xml")
 
@@ -26,6 +29,8 @@ gpio9 = GpioSink([light_traffic], 9)
 gpio8 = GpioSink([moderate_traffic], 8)
 gpio7 = GpioSink([heavy_traffic], 7)
 
+gpio11 = GpioSink([ping], 11)
+
 
 
 # Check how do we deal with nonexistent urls
@@ -38,6 +43,7 @@ gpio7 = GpioSink([heavy_traffic], 7)
 
 # Now as we are set up, run the circuit once.
 # In production you would like to set time intervals or triggers for it.
+ping.process()
 web.process()
 
 traffic.process()
@@ -50,3 +56,4 @@ heavy_traffic.process()
 gpio7.process()
 gpio8.process()
 gpio9.process()
+gpio11.process()
