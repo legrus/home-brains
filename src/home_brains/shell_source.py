@@ -3,7 +3,7 @@ from subprocess import *
 from home_brains import *
 
 
-class ShellInput(Variable):
+class ShellSource(Variable):
     """Logical and for its inputs"""
     cmd = ""
 
@@ -20,4 +20,4 @@ class ShellInput(Variable):
 
         # TODO error still does not work!
 
-        super(ShellInput, self).process()
+        super(ShellSource, self).process()

@@ -2,7 +2,7 @@ import urllib2
 from home_brains import *
 
 
-class WebInput(Variable):
+class WebSource(Variable):
     """ Gets its value from the web """
 
     url = ""
@@ -23,11 +23,9 @@ class WebInput(Variable):
             self.error = True
 
         # uncomment to see raw data logged
-        # super(WebInput, self).process()
+        # super(WebSource, self).process()
 
         if self.error:
-            logging.debug("Processing WebInput, ERROR")
+            logging.debug("Processing WebSource, ERROR")
         else:
-            logging.debug("Processing WebInput, len(value) = %s", len(self.value))
-
-        return
+            logging.debug("Processing WebSource, len(value) = %s", len(self.value))
