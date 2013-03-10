@@ -1,3 +1,6 @@
+# -*- coding: UTF-8 -*-
+# https://github.com/legrus/home-brains, legrus, 2013
+
 import urllib2
 from home_brains import *
 

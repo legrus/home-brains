@@ -1,4 +1,7 @@
 import logging
+# -*- coding: UTF-8 -*-
+# https://github.com/legrus/home-brains, legrus, 2013
+
 from home_brains import *
 
 # uncomment next line on a real RPi device

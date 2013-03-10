@@ -1,4 +1,8 @@
-from '../src/home_brains' import *
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+# https://github.com/legrus/home-brains, legrus, 2013
+
+from home_brains import *
 
 # Simple first tests
 
