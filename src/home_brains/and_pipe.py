@@ -25,4 +25,3 @@ class AndPipe(Pipe):
 
         super(AndPipe, self).process()
 
-        return

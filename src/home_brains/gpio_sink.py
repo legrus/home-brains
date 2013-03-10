@@ -20,6 +20,7 @@ class GpioSink(Pipe):
 
         if not self.error:
             self.value = self.inputs[0].value
+            logging.debug("Set the LED %d to %s!", self.gpio, self.value)
 #            GPIO.output(self.gpio, self.value)
 
         super(GpioSink, self).process()

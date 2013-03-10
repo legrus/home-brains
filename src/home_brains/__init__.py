@@ -10,6 +10,7 @@ from web_source import WebSource
 
 from pipe import Pipe
 from and_pipe import AndPipe
+from expression_pipe import ExpressionPipe
 from xpath_pipe import XpathPipe
 
 from gpio_sink import GpioSink
