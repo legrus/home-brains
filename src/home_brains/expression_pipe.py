@@ -15,7 +15,11 @@ class ExpressionPipe(Pipe):
         super(ExpressionPipe, self).preprocess()
 
         if not self.error:
-            args = map(lambda x: x.value, self.inputs) # get input values in a list
-            self.value = eval ( self.expr.format(*args) )   # yes I know eval is evil
+            # get input values in a list
+            args = map(lambda x: int(x.value), self.inputs)
+
+            # yes I know eval is evil.
+            # but i control expr, and supply it with user input restricted to integers.
+            self.value = eval ( self.expr.format(*args) )
 
         super(ExpressionPipe, self).process()
