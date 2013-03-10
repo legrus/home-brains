@@ -1,4 +1,4 @@
-from home_brains import *
+from '../src/home_brains' import *
 
 # Simple first tests
 
@@ -17,7 +17,7 @@ moderate_traffic = ExpressionPipe([traffic], "{0} >= 4 and {0} <= 6")
 heavy_traffic = ExpressionPipe([traffic], "{0} > 6")
 
 
-# Finally set the output ("sinks"): the yellow led is on of it's summer
+# Finally set the output ("sinks"): the red led on gpio7 for heavy traffic and vice versa
 gpio9 = GpioSink([light_traffic], 9)
 gpio8 = GpioSink([moderate_traffic], 8)
 gpio7 = GpioSink([heavy_traffic], 7)
