@@ -16,7 +16,7 @@ class Pipe(Variable):
                 self.inputs.append(x)
                 x.outputs.append(self)
 
-        logging.debug("Pipe.__init__: inputs = %s", self.inputs)
+        #logging.debug("Pipe.__init__: inputs = %s", self.inputs)
         super(Pipe, self).__init__()
 
     def preprocess(self):

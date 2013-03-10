@@ -1,8 +1,11 @@
 import logging
-#from RPi import GPIO
 from home_brains import *
 
-#GPIO.setmode(GPIO.BCM)
+# uncomment next line on a real RPi device
+#from RPi import GPIO
+from dummy_rpi import GPIO
+
+GPIO.setmode(GPIO.BCM)
 
 class GpioSink(Pipe):
     """Set Raspberry Pi GPIOs"""
@@ -11,7 +14,7 @@ class GpioSink(Pipe):
     def __init__(self, _inputs, _gpio):
         super(GpioSink, self).__init__(_inputs)
         self.gpio = _gpio
-#        GPIO.setup(self.gpio, GPIO.OUT)
+        GPIO.setup(self.gpio, GPIO.OUT)
 
     def process(self):
         super(GpioSink, self).preprocess() # check inputs are sane
@@ -22,6 +25,6 @@ class GpioSink(Pipe):
         if not self.error:
             self.value = self.inputs[0].value
             logging.debug("Set the LED %d to %s!", self.gpio, self.value)
-#            GPIO.output(self.gpio, self.value)
+            GPIO.output(self.gpio, self.value)
 
         super(GpioSink, self).process()
