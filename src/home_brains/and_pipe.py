@@ -1,5 +1,5 @@
 import logging
-from home_brainz import *
+from home_brains import *
 
 
 class AndPipe(Pipe):

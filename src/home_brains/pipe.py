@@ -1,9 +1,12 @@
 import logging
-from home_brainz import *
+from home_brains import *
 
 
 class Pipe(Variable):
-    """Join or operate on variables"""
+    """
+    Perform operations on input variables when processed.
+    """
+
     inputs = []
 
     def __init__(self, _inputs):
@@ -11,12 +14,14 @@ class Pipe(Variable):
         for x in _inputs:
             if isinstance(x, Variable):
                 self.inputs.append(x)
-                x.sinks.append(self)
+                x.outputs.append(self)
 
         logging.debug("Pipe.__init__: inputs = %s", self.inputs)
         super(Pipe, self).__init__()
 
     def preprocess(self):
+        """ If any of the inputs has an error flag, this pipe would also have error on """
+
         self.error = False
 
         for x in self.inputs:

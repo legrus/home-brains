@@ -1,4 +1,6 @@
-from home_brainz import *
+# simple first tests
+
+from home_brains import *
 
 x = ShellInput("echo 1")
 y = ShellInput("echo 1")

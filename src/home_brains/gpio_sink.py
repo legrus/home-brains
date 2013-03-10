@@ -1,8 +1,8 @@
 import logging
-from RPi import GPIO
-from home_brainz import *
+#from RPi import GPIO
+from home_brains import *
 
-GPIO.setmode(GPIO.BCM)
+#GPIO.setmode(GPIO.BCM)
 
 class GpioSink(Pipe):
     """Set Raspberry Pi GPIOs"""
@@ -20,6 +20,6 @@ class GpioSink(Pipe):
 
         if not self.error:
             self.value = self.inputs[0].value
-            GPIO.output(self.gpio, self.value)
+#            GPIO.output(self.gpio, self.value)
 
         super(GpioSink, self).process()

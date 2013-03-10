@@ -1,6 +1,6 @@
 import logging
 from subprocess import *
-from home_brainz import *
+from home_brains import *
 
 
 class ShellInput(Variable):

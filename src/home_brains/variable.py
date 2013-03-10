@@ -1,13 +1,17 @@
 import logging
 
-
 class Variable(object):
-	"""Hold a value"""
+	"""
+	Hold a value, updating it periodically or triggering by events.
+	Every other entity is a Variable.
+	"""
+
 	value = None
 	error = False
-	sinks = []
+	outputs = []
 
 	def __init__(self):
+		# TODO: register in a global variable manager
 		pass
 
 	def process(self):
@@ -17,5 +21,3 @@ class Variable(object):
 			self.value,
 			("ERROR" if self.error else "")
 			)
-
-		return

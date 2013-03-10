@@ -1,6 +1,6 @@
 import logging
 from lxml import etree
-from home_brainz import *
+from home_brains import *
 
 class XpathPipe(Pipe):
     """Extract value from xml document"""
