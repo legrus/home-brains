@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Home-brains : Smart things for my RaspberryPi-powered home" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Home-brains</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/legrus/home-brains">View on GitHub</a>
+
+          <h1 id="project_title">Home-brains</h1>
+          <h2 id="project_tagline">Smart things for my RaspberryPi-powered home</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/legrus/home-brains/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/legrus/home-brains/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>home-brains</h1>
+
+<p>Smart things for my RaspberryPi-powered home.</p>
+
+<p>Basic idea: create a virtual circuit of Sources, Pipes ans Sinks, e.g.</p>
+
+<pre><code>WebSource (reading a weather forecast xml each hour)
+|
++-- XpathPipe (extracting rain info from the XML)
+    |
+    +-- GpioSink (blinking blue LED connected to GPIO if I should take my umbrella)
+</code></pre>
+
+<p>Logical elements and variables inspired by EPICS system, but I want more lightweight
+solution in pure Python.</p>
+
+<p>All logical circuit elements are called Variables and can be of three major types:</p>
+
+<ul>
+<li>
+<p>Source (periodical / triggered)</p>
+
+<ul>
+<li>WebSource (fetches data from the web)</li>
+<li>GpioSource (checks RaspberryPi GPIO pin input high/low state)</li>
+<li>ShellSource (runs shell command, e.g. 'cat /proc/cpuinfo | grep MHz')</li>
+</ul>
+</li>
+<li>
+<p>Pipe (has multiple Sources or other Pipes as inputs)</p>
+
+<ul>
+<li>ExpressionPipe (evaluates arbitrary expression like "%1 &gt; %2" over its inputs)</li>
+<li>XpathPipe (extracts its value from given XML/HTML)</li>
+</ul>
+</li>
+<li>
+<p>Sink (is actually a Pipe with one input and some physical side-efects)</p>
+
+<ul>
+<li>GpioSink (sets RaspberryPi GPIO pins to blink leds, sound alarms, etc)</li>
+<li>EmailSink</li>
+<li>SmsSink (sends me an SMS over a connected 3G modem)</li>
+<li>SpeechSink (uses some text-to-speech)</li>
+</ul>
+</li>
+</ul><p>TODO (next):</p>
+
+<ul>
+<li>composite variables</li>
+<li>expression_pipe</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Home-brains maintained by <a href="https://github.com/legrus">legrus</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
