@@ -11,6 +11,7 @@ class GpioSink(Pipe):
     def __init__(self, _inputs, _gpio):
         super(GpioSink, self).__init__(_inputs)
         self.gpio = _gpio
+#        GPIO.setup(self.gpio, GPIO.OUT)
 
     def process(self):
         super(GpioSink, self).preprocess() # check inputs are sane
