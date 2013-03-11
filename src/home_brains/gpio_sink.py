@@ -6,6 +6,7 @@ from home_brains import *
 
 # uncomment next line on a real RPi device
 #from RPi import GPIO
+# comment next line on a real RPi device
 from dummy_rpi import GPIO
 
 GPIO.setmode(GPIO.BCM)

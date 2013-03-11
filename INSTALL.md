@@ -8,4 +8,4 @@ Installation instructions
 
 1. If you're on Pi, uncomment all GPIO-related lines in src/home_brains/gpio_sink.py
 
-2. Adjust main.py to your needs and run it!
+2. Adjust traffic.py to your needs and run it!

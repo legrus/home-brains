@@ -32,12 +32,17 @@ circuit.create('GpioSink', 'gpio7', 7, ['heavy_traffic'], {})
 
 circuit.create('GpioSink', 'gpio11', 11, ['online'], {})
 
-# Check how do we deal with nonexistent urls
-# err = WebSource("http://zzzzzzzzzzzzzzzzzzzz.yandex.ru")
-# err2 = XpathPipe([err], "string(/info/weather/day/day_part[1]/temperature)")
-# err.process()
-# err2.process()
+# Now the virtual circuit looks like this:
+#
+# online -------> gpio11
+#                             +----> light_traffic ---> gpio9
+#                             |
+#          +---> traffic -----+--> moderate_traffic --> gpio8
+#          |                  |
+# yandex --+                  +----> heavy_traffic ---> gpio7
+#          |
+#          +--> tempetature
+#
 
+# Start the processing loop!
 circuit.start_loop()
-
-#print circuit.timeline.keys()
