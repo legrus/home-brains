@@ -18,3 +18,5 @@ from xpath_pipe import XpathPipe
 from dummy_rpi import GPIO
 
 from gpio_sink import GpioSink
+
+from circuit import Circuit

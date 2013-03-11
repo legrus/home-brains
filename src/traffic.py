@@ -4,34 +4,33 @@
 
 from home_brains import *
 
-# Simple first tests
+# Simple tests
 
+# This is our playground, virtual circuit board with signal sources, pipes and sinks
+circuit = Circuit()
 
 # First create some data sources to play with:
 # A variable which evaluates to 1 if google.com is accessible
-ping = ShellSource("ping google.com -c 1 | grep '1 received' | wc -l")
+circuit.create('ShellSource', 'online', 'ping google.com -c 1 | grep "1 received" | wc -l', [], {'period': 60})
 
 # An xml with recent weather and traffic reports
-web = WebSource("http://export.yandex.ru/bar/reginfo.xml")
+circuit.create('WebSource', 'yandex', 'http://export.yandex.ru/bar/reginfo.xml', [], {'period': 5 * 60})
 
 # Now specify how to extract data from the xml
-traffic = XpathPipe([web], "string(/info/traffic/level)")
-temperature = XpathPipe([web], "string(/info/weather/day/day_part[1]/temperature)")
+circuit.create('XpathPipe', 'traffic', 'string(/info/traffic/level)', ['yandex'], {})
+circuit.create('XpathPipe', 'temperature', 'string(/info/weather/day/day_part[1]/temperature)', ['yandex'], {})
 
 # Now create three boolean variables for traffic density
-light_traffic = ExpressionPipe([traffic], "{0} < 4")
-moderate_traffic = ExpressionPipe([traffic], "{0} >= 4 and {0} <= 6")
-heavy_traffic = ExpressionPipe([traffic], "{0} > 6")
-
+circuit.create('ExpressionPipe', 'light_traffic', '{0} < 4', ['traffic'], {})
+circuit.create('ExpressionPipe', 'moderate_traffic', '{0} >= 4 and {0} <= 6', ['traffic'], {})
+circuit.create('ExpressionPipe', 'heavy_traffic', '{0} > 6', ['traffic'], {})
 
 # Finally set the output ("sinks"): the red led on gpio7 for heavy traffic and vice versa
-gpio9 = GpioSink([light_traffic], 9)
-gpio8 = GpioSink([moderate_traffic], 8)
-gpio7 = GpioSink([heavy_traffic], 7)
+circuit.create('GpioSink', 'gpio9', 9, ['light_traffic'], {})
+circuit.create('GpioSink', 'gpio8', 8, ['moderate_traffic'], {})
+circuit.create('GpioSink', 'gpio7', 7, ['heavy_traffic'], {})
 
-gpio11 = GpioSink([ping], 11)
-
-
+circuit.create('GpioSink', 'gpio11', 11, ['online'], {})
 
 # Check how do we deal with nonexistent urls
 # err = WebSource("http://zzzzzzzzzzzzzzzzzzzz.yandex.ru")
@@ -39,21 +38,6 @@ gpio11 = GpioSink([ping], 11)
 # err.process()
 # err2.process()
 
+circuit.start_loop()
 
-
-# Now as we are set up, run the circuit once.
-# In production you would like to set time intervals or triggers for it.
-ping.process()
-web.process()
-
-traffic.process()
-temperature.process()
-
-light_traffic.process()
-moderate_traffic.process()
-heavy_traffic.process()
-
-gpio7.process()
-gpio8.process()
-gpio9.process()
-gpio11.process()
+#print circuit.timeline.keys()
