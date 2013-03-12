@@ -1,4 +1,3 @@
-import logging
 # -*- coding: UTF-8 -*-
 # https://github.com/legrus/home-brains, legrus, 2013
 
@@ -11,10 +10,11 @@ from dummy_rpi import GPIO
 
 GPIO.setmode(GPIO.BCM)
 
+
 class GpioSink(Pipe):
     """Set Raspberry Pi GPIOs"""
 
-    def __init__(self, _id, _param, _inputs = [], _options = {}):
+    def __init__(self, _id, _param, _inputs=[], _options={}):
         super(GpioSink, self).__init__(_id, _param, _inputs, _options)
         GPIO.setup(self.gpio(), GPIO.OUT)
 
@@ -22,7 +22,7 @@ class GpioSink(Pipe):
         return self.param
 
     def process(self):
-        super(GpioSink, self).preprocess() # check inputs are sane
+        super(GpioSink, self).preprocess()  # check inputs are sane
 
         if self.gpio() is None or len(self.inputs) == 0:
             self.error = True
