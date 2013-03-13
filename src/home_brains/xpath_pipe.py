@@ -5,7 +5,7 @@ from lxml import etree
 from home_brains import *
 
 
-class XpathPipe(Pipe):
+class XpathPipe(Variable):
     """Extract value from xml document"""
 
     def xpath(self):

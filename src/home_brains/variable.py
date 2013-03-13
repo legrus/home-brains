@@ -63,3 +63,12 @@ class Variable(object):
 
     def get_option(self, name):
         return self.options[name] if name in self.options else None
+
+    def preprocess(self):
+        ''' If any of the inputs has an error flag, this pipe would also have error on '''
+
+        self.error = False
+
+        for x in self.inputs:
+            if x.error:
+                self.error = True

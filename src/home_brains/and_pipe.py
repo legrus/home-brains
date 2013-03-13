@@ -5,7 +5,7 @@ import logging
 from home_brains import *
 
 
-class AndPipe(Pipe):
+class AndPipe(Variable):
     """Logical AND for its inputs"""
 
     def process(self):

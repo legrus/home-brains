@@ -11,7 +11,7 @@ from dummy_rpi import GPIO
 GPIO.setmode(GPIO.BCM)
 
 
-class GpioSink(Pipe):
+class GpioSink(Variable):
     """Set Raspberry Pi GPIOs"""
 
     def __init__(self, _id, _param, _inputs=[], _options={}):
