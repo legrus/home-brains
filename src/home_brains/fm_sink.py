@@ -20,7 +20,7 @@ class FmSink(Variable):
 
     def freq(self):
         ''' Frequency (MHz) for FM transmission '''
-        self.get_option("freq") or "102.5"
+        return self.param
 
     def process(self):
         super(FmSink, self).preprocess()  # check inputs are sane
@@ -35,14 +35,17 @@ class FmSink(Variable):
         super(FmSink, self).process()
 
     def play(self):
+        ''' Starts the worker (broadcasting) thread in background '''
         if self.worker:
             self.stop()
         self.worker = Thread(target=self.player)
         self.worker.start()
 
     def stop(self):
+        ''' Does not kill the thread, but himself dies in attempt '''
         self.worker.join(1000)
         if self.worker.isAlive():
+            # TODO: kill pifm here
             raise Exception("Previous speaker not stopped yet!")
 
     def player(self):
