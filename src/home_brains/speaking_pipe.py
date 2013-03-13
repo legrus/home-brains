@@ -2,6 +2,7 @@
 # https://github.com/legrus/home-brains, legrus, 2013
 
 from home_brains import *
+from urllib import urlencode
 
 
 class SpeakingPipe(WebSource):
@@ -12,11 +13,12 @@ class SpeakingPipe(WebSource):
 
     def create_media_url(self):
 
-        words = self.inputs[0].value
-        arg = '+'.join(words.split())
-        lang = "en"  # TODO detect language
+        query = urlencode({
+            'q': self.inputs[0].value,
+            'tl': 'en'  # TODO detect language
+        })
 
-        return "http://translate.google.com/translate_tts?q=%s&tl=%s" % (arg, lang)
+        return "http://translate.google.com/translate_tts?%s" % query
 
     def process(self):
         super(SpeakingPipe, self).preprocess()  # check inputs are sane
