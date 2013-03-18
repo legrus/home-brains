@@ -4,18 +4,14 @@
 import audioop
 import logging
 import pyaudio
-from subprocess import call
 from threading import Thread
-from time import time
 
 from home_brains import Variable
 
 
 class MicSource(Variable):
     '''
-    Broadcast sound to FM with magnificent PiFM.
-    Requires: pifm in $PATH, root permissions for it (e.g. suid)
-    Input: anything playable by ffmpeg (filename, web stream...)
+    Waits for the predefined sound pattern on the mic
     '''
 
     def __init__(self, _id, _param, _inputs=[], _options={}, _trigger_callback=None):
@@ -41,15 +37,8 @@ class MicSource(Variable):
         '''
         while True:
             self._wait_for_claps()
-            filename = "speech-%s.flac" % time()
-            cmd = "arecord -f cd -t wav -d 4 -r 16000 | flac - -f --best --sample-rate 16000 -o %s" % filename
-            logging.debug(cmd)
-
-            code = call(cmd, shell=True)
-            if code > 0:
-                self.error = True
-
-            self.value = filename
+            self.error = False
+            self.value = True
 
             if self.trigger_callback is not None:
                 self.trigger_callback(self)
@@ -85,7 +74,7 @@ class MicSource(Variable):
 
             avg = sum(last_records) / WINDOW
 
-            is_peak = n_chunk > WINDOW and rms > 2 * avg
+            is_peak = n_chunk > WINDOW and rms > 4 * avg
 
             if is_peak:
                 if last_peak == 0:
