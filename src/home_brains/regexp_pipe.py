@@ -22,10 +22,17 @@ class RegexpPipe(Variable):
         super(RegexpPipe, self).preprocess()  # check inputs are sane
 
         if not self.error:
-            self.value = re.search(
+            match = re.search(
                 self.regexp(),
                 self.inputs[0].value,
                 self.flags()
-            ).group(1)
+            )
+
+            if match:
+                self.value = match.group(1)
+                self.error = False
+            else:
+                self.value = None
+                self.error = True
 
         super(RegexpPipe, self).process()
