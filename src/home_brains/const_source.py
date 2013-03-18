@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 # https://github.com/legrus/home-brains, legrus, 2013
 
-from home_brains import *
+from home_brains import Variable
 
 
 class ConstSource(Variable):

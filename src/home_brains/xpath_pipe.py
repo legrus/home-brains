@@ -2,7 +2,7 @@
 # https://github.com/legrus/home-brains, legrus, 2013
 
 from lxml import etree
-from home_brains import *
+from home_brains import Variable
 
 
 class XpathPipe(Variable):

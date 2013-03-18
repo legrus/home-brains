@@ -8,25 +8,13 @@ from pymongo import MongoClient
 from threading import Thread
 from time import mktime, sleep
 
-from home_brains import *
+from home_brains import VariableTypes
 
 
 class Circuit(object):
     '''
     Hold a bunch of variables, updating them periodically or triggering by events.
     '''
-
-    VariableTypes = {
-        "ConstSource": ConstSource,
-        "ShellSource": ShellSource,
-        "WebSource": WebSource,
-        "ExpressionPipe": ExpressionPipe,
-        "SpeakingPipe": SpeakingPipe,
-        "RegexpPipe": RegexpPipe,
-        "XpathPipe": XpathPipe,
-        "FmSink": FmSink,
-        "GpioSink": GpioSink
-    }
 
     Tick = timedelta(microseconds=1000)
 
@@ -46,7 +34,7 @@ class Circuit(object):
         self.state_collection = Circuit.db[self.state_collection_name]
 
     def create(self, _type, _id, param, input_names, options):
-        if not _type in Circuit.VariableTypes:
+        if not _type in VariableTypes:
             raise TypeError("Invalid variable type: %s" % _type)
 
         if _id in self.registry:
@@ -58,7 +46,7 @@ class Circuit(object):
             raise NameError("Some of the inputs do not (yet?) exist: %s" % input_names)
 
         # instantiate variable and register it
-        var = Circuit.VariableTypes[_type](_id, param, inputs, options)
+        var = VariableTypes[_type](_id, param, inputs, options, self._triggered)
         self.registry[_id] = var
 
     def start_loop(self):
@@ -69,13 +57,15 @@ class Circuit(object):
         for var in self.registry.values():
             if var.get_option('period'):
                 # put all the periodicals into next free slot on the timeline
-                self.add_to_timeline(var, datetime.now())
+                self._add_to_timeline(var, datetime.now())
 
-        self.worker = Thread(target=self.loop)
+            var.start_background_task()  # for those who have overloaded it
+
+        self.worker = Thread(target=self._loop)
         self.worker.start()
         self.worker.join()
 
-    def add_to_timeline(self, var, when):
+    def _add_to_timeline(self, var, when):
         ''' Tries to schedule var process as close to "when" as possible, with Tick steps. '''
 
         next_free_tick = when
@@ -85,46 +75,51 @@ class Circuit(object):
 
         self.timeline[next_free_tick] = var
 
-        logging.debug("  added to timeline(%d): %s in %fs (at %s)",
+        logging.debug(
+            "  added to timeline(%d): %s in %fs (at %s)",
             len(self.timeline.keys()),
             var.id,
             (next_free_tick-datetime.now()).total_seconds(),
             next_free_tick
         )
 
-    def remove_from_timeline(self, when):
+    def _remove_from_timeline(self, when):
         del self.timeline[when]
 
-    def loop(self):
+    def _loop(self):
 
-        while len(self.timeline) > 0:
+        while True:  # len(self.timeline) > 0:
             now = datetime.now()
             # process all variable due to now
 
-            workload = min(self.timeline.keys())
+            workload = min(self.timeline.keys()) if len(self.timeline) > 0 else None
 
-            if workload <= now:
+            if workload is not None and workload <= now:
                 # oops, we're late, go to work
                 var = self.timeline[workload]
                 logging.debug("Processing '%s'", var.id)
                 var.process()
-                self.remove_from_timeline(workload)
+                self._remove_from_timeline(workload)
 
                 if var.get_option('period'):
                     next_process_time = workload + timedelta(seconds=var.get_option('period'))
-                    self.add_to_timeline(var, next_process_time)
+                    self._add_to_timeline(var, next_process_time)
 
                 # schedule var outputs
 
                 logging.debug("Scheduling '%s' outputs processing(%d)", var.id, len(var.outputs))
                 for v in var.outputs:
                     logging.debug("  * %s", v.id)
-                    self.add_to_timeline(v, now)
+                    self._add_to_timeline(v, now)
 
             else:
                 self.save_state()
-                delay = (workload - now).total_seconds()
-                logging.debug("No jobs, sleeping for %fs (next job: %s)", delay, self.timeline[workload].id)
+                delay = 1  # (workload - now).total_seconds()
+                logging.debug(
+                    "No jobs, sleeping for %2.3fs (next job: %s)",
+                    delay,
+                    self.timeline[workload].id if workload is not None else "None"
+                )
                 sleep(delay)
 
     def find(self, var_id):
@@ -160,3 +155,8 @@ class Circuit(object):
         # for id, var in self.registry:
 
         pass
+
+    def _triggered(self, var):
+        ''' Called by variables which have triggers in them running in other threads '''
+
+        self._add_to_timeline(var, datetime.now())

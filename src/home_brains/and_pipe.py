@@ -1,12 +1,11 @@
 # -*- coding: UTF-8 -*-
 # https://github.com/legrus/home-brains, legrus, 2013
 
-import logging
-from home_brains import *
+from home_brains import Variable
 
 
 class AndPipe(Variable):
-    """Logical AND for its inputs"""
+    '''Logical AND for its inputs'''
 
     def process(self):
         super(AndPipe, self).preprocess()

@@ -11,13 +11,32 @@ class Variable(object):
     Every other entity is a Variable.
     '''
 
-    def __init__(self, _id, _param, _inputs=[], _options={}):
+    def __init__(self, _id, _param, _inputs=[], _options={}, _trigger_callback=None):
+        '''
+        id = the name of the variable under which it is registered in a circuit.
+
+        param = the main parameter (url for WebSource or regexp for RegexpPipe)
+
+        inputs = list of (already created) variables on which this var depends
+
+        options dictionary may contain additional options:
+            'period'    in seconds for periodically activated variables
+            'transient' flag for variables that do not save (e.g. huge) value
+                        to the database
+            're'        for RegexpPipe flags
+
+        trigger_callback is getting called if the variable runs another thread to
+                         trigger its processing (see GpioSource or SpeechSource).
+                         It informs the circuit the variable has a trigger and it
+                         needs to be processed.
+        '''
         (self.id, self.param, self.options) = (_id, _param, _options)
 
         self.inputs = []
         self.outputs = []
         self.error = False
         self.value = None
+        self.trigger_callback = _trigger_callback
 
         for x in _inputs:
             if not isinstance(x, Variable):
@@ -72,3 +91,7 @@ class Variable(object):
         for x in self.inputs:
             if x.error:
                 self.error = True
+
+    def start_background_task(self):
+        ''' Override this in child classes '''
+        pass

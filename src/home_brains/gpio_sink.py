@@ -1,12 +1,13 @@
 # -*- coding: UTF-8 -*-
 # https://github.com/legrus/home-brains, legrus, 2013
 
-from home_brains import *
+from home_brains import Variable
 
-# uncomment next line on a real RPi device
-#from RPi import GPIO
-# comment next line on a real RPi device
-from dummy_rpi import GPIO
+try:
+    # on a real RPi device
+    from RPi import GPIO
+except ImportError:
+    from dummy_rpi import GPIO
 
 GPIO.setmode(GPIO.BCM)
 
@@ -14,8 +15,8 @@ GPIO.setmode(GPIO.BCM)
 class GpioSink(Variable):
     """Set Raspberry Pi GPIOs"""
 
-    def __init__(self, _id, _param, _inputs=[], _options={}):
-        super(GpioSink, self).__init__(_id, _param, _inputs, _options)
+    def __init__(self, _id, _param, _inputs=[], _options={}, _trigger_callback=None):
+        super(GpioSink, self).__init__(_id, _param, _inputs, _options, _trigger_callback)
         GPIO.setup(self.gpio(), GPIO.OUT)
 
     def gpio(self):

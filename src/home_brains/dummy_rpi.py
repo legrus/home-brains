@@ -3,10 +3,13 @@
 
 import logging
 
+logging.debug('Loading DummyRPi module. Install RPi.GPIO if running on a real Pi')
+
+
 class GPIO(object):
-    """
+    '''
     A placeholder class to run tests outside real Raspberry Pi
-    """
+    '''
 
     @staticmethod
     def setup(pin, mode):
@@ -20,5 +23,5 @@ class GPIO(object):
     def setmode(mode):
         logging.debug("DummyRPi::setmode(%s)", mode)
 
-    BCM="BCM"
-    OUT="OUT"
+    BCM = "BCM"
+    OUT = "OUT"

@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 # https://github.com/legrus/home-brains, legrus, 2013
 
-from home_brains import *
+from home_brains import Variable
 import re
 
 
@@ -13,13 +13,13 @@ class RegexpPipe(Variable):
     '''
 
     def regexp(self):
-        return self.param  # param is an xpath expression for XPathPipe
+        return self.param  # param is an regular expression for RegexpSink
 
     def flags(self):
         return self.get_option("re") or 0
 
     def process(self):
-        super(XpathPipe, self).preprocess()  # check inputs are sane
+        super(RegexpPipe, self).preprocess()  # check inputs are sane
 
         if not self.error:
             self.value = re.search(
@@ -28,4 +28,4 @@ class RegexpPipe(Variable):
                 self.flags()
             ).group(1)
 
-        super(XpathPipe, self).process()
+        super(RegexpPipe, self).process()

@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 # https://github.com/legrus/home-brains, legrus, 2013
 
-from home_brains import *
+from home_brains import WebSource
 from urllib import urlencode
 
 
@@ -18,7 +18,7 @@ class SpeakingPipe(WebSource):
             'tl': 'en'  # TODO detect language
         })
 
-        return "http://translate.google.com/translate_tts?%s" % query
+        return 'http://translate.google.com/translate_tts?%s' % query
 
     def process(self):
         super(SpeakingPipe, self).preprocess()  # check inputs are sane
@@ -31,7 +31,6 @@ class SpeakingPipe(WebSource):
             filename = "/tmp/speak-%s.mp3" % self.id
 
             try:
-                # This will create a new file or **overwrite an existing file**.
                 f = open(filename, "w")
                 try:
                     f.write(self.value)

@@ -1,21 +1,22 @@
 # -*- coding: UTF-8 -*-
 # https://github.com/legrus/home-brains, legrus, 2013
 
+import logging
 from subprocess import call
 from threading import Thread
 
-from home_brains import *
+from home_brains import Variable
 
 
 class FmSink(Variable):
     '''
     Broadcast sound to FM with magnificent PiFM.
-    Requires: pifm in $PATH, root permissions (e.g. suid)
+    Requires: pifm in $PATH, root permissions for it (e.g. suid)
     Input: anything playable by ffmpeg (filename, web stream...)
     '''
 
-    def __init__(self, _id, _param, _inputs=[], _options={}):
-        super(FmSink, self).__init__(_id, _param, _inputs, _options)
+    def __init__(self, _id, _param, _inputs=[], _options={}, _trigger_callback=None):
+        super(FmSink, self).__init__(_id, _param, _inputs, _options, _trigger_callback)
         self.worker = None
 
     def freq(self):
@@ -49,7 +50,7 @@ class FmSink(Variable):
             raise Exception("Previous speaker not stopped yet!")
 
     def player(self):
-        cmd = "ffmpeg -i %s -ar 22050 -ac 1 -f wav -acodec pcm_s16le pipe:1 | pifm - %s" % (self.value, self.freq())
+        cmd = "avconv -i %s -ar 22050 -ac 1 -f wav -acodec pcm_s16le pipe:1 | pifm - %s" % (self.value, self.freq())
         logging.debug(cmd)
 
         code = call(cmd, shell=True)
