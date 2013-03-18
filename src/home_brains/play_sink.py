@@ -37,7 +37,7 @@ class PlaySink(Variable):
 
     def stop(self):
         ''' Does not kill the worker thread, but himself dies in attempt '''
-        if self.worker in None:
+        if self.worker is None:
             return
 
         self.worker.join(1000)
@@ -45,7 +45,7 @@ class PlaySink(Variable):
             raise Exception("Previous speaker not stopped yet!")
 
     def _player(self):
-        cmd = "mplayer %s" % self.value
+        cmd = "mplayer -really-quiet %s" % self.value
         logging.debug(cmd)
 
         code = call(cmd, shell=True)
