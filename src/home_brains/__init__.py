@@ -15,6 +15,7 @@ from web_source import WebSource
 from and_pipe import AndPipe
 from expression_pipe import ExpressionPipe
 from regexp_pipe import RegexpPipe
+from recorder_pipe import RecorderPipe
 from speaking_pipe import SpeakingPipe
 from voice_pipe import VoicePipe
 from xpath_pipe import XpathPipe
@@ -34,6 +35,7 @@ VariableTypes = {
     "AndPipe": AndPipe,
     "ExpressionPipe": ExpressionPipe,
     "RegexpPipe": RegexpPipe,
+    "RecorderPipe": RecorderPipe,
     "SpeakingPipe": SpeakingPipe,
     "VoicePipe": VoicePipe,
     "XpathPipe": XpathPipe,
