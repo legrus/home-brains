@@ -68,6 +68,15 @@ class Circuit(object):
     def _add_to_timeline(self, var, when):
         ''' Tries to schedule var process as close to "when" as possible, with Tick steps. '''
 
+        if var in self.timeline.values():
+            # do not add already planned variables
+            logging.debug(
+                "  not added to timeline(%s): %s already planned/running",
+                [var.id for var in self.timeline.values()],
+                var.id,
+            )
+            return
+
         next_free_tick = when
 
         while next_free_tick in self.timeline:
@@ -76,8 +85,8 @@ class Circuit(object):
         self.timeline[next_free_tick] = var
 
         logging.debug(
-            "  added to timeline(%d): %s in %fs (at %s)",
-            len(self.timeline.keys()),
+            "  added to timeline(%s): %s in %fs (at %s)",
+            [var.id for var in self.timeline.values()],
             var.id,
             (next_free_tick-datetime.now()).total_seconds(),
             next_free_tick
