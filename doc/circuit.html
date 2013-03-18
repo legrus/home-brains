@@ -1,0 +1,116 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module circuit</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>circuit</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/legrus/work/home-brains/src/home_brains/circuit.py">/home/legrus/work/home-brains/src/home_brains/circuit.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;UTF-8&nbsp;-*-<br>
+#&nbsp;https://github.com/legrus/home-brains,&nbsp;legrus,&nbsp;2013</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="home_brains.and_pipe.html">home_brains.and_pipe</a><br>
+<a href="home_brains.circuit.html">home_brains.circuit</a><br>
+<a href="home_brains.const_source.html">home_brains.const_source</a><br>
+<a href="home_brains.dummy_rpi.html">home_brains.dummy_rpi</a><br>
+</td><td width="25%" valign=top><a href="home_brains.expression_pipe.html">home_brains.expression_pipe</a><br>
+<a href="home_brains.fm_sink.html">home_brains.fm_sink</a><br>
+<a href="home_brains.gpio_sink.html">home_brains.gpio_sink</a><br>
+<a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top><a href="home_brains.regexp_pipe.html">home_brains.regexp_pipe</a><br>
+<a href="home_brains.shell_source.html">home_brains.shell_source</a><br>
+<a href="home_brains.speaking_pipe.html">home_brains.speaking_pipe</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="home_brains.variable.html">home_brains.variable</a><br>
+<a href="home_brains.web_source.html">home_brains.web_source</a><br>
+<a href="home_brains.xpath_pipe.html">home_brains.xpath_pipe</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="circuit.html#Circuit">Circuit</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Circuit">class <strong>Circuit</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Hold&nbsp;a&nbsp;bunch&nbsp;of&nbsp;variables,&nbsp;updating&nbsp;them&nbsp;periodically&nbsp;or&nbsp;triggering&nbsp;by&nbsp;events.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Circuit-__init__"><strong>__init__</strong></a>(self, _title<font color="#909090">='brains'</font>)</dt></dl>
+
+<dl><dt><a name="Circuit-add_to_timeline"><strong>add_to_timeline</strong></a>(self, var, when)</dt><dd><tt>Tries&nbsp;to&nbsp;schedule&nbsp;var&nbsp;process&nbsp;as&nbsp;close&nbsp;to&nbsp;"when"&nbsp;as&nbsp;possible,&nbsp;with&nbsp;Tick&nbsp;steps.</tt></dd></dl>
+
+<dl><dt><a name="Circuit-create"><strong>create</strong></a>(self, _type, _id, param, input_names, options)</dt></dl>
+
+<dl><dt><a name="Circuit-find"><strong>find</strong></a>(self, var_id)</dt><dd><tt>Find&nbsp;a&nbsp;variable&nbsp;in&nbsp;the&nbsp;circuit&nbsp;by&nbsp;its&nbsp;name</tt></dd></dl>
+
+<dl><dt><a name="Circuit-load_state"><strong>load_state</strong></a>(self)</dt><dd><tt>Load&nbsp;all&nbsp;the&nbsp;variables&nbsp;values&nbsp;from&nbsp;the&nbsp;database</tt></dd></dl>
+
+<dl><dt><a name="Circuit-loop"><strong>loop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Circuit-remove_from_timeline"><strong>remove_from_timeline</strong></a>(self, when)</dt></dl>
+
+<dl><dt><a name="Circuit-save_setup"><strong>save_setup</strong></a>(self)</dt><dd><tt>Save&nbsp;variables&nbsp;setup&nbsp;to&nbsp;the&nbsp;database</tt></dd></dl>
+
+<dl><dt><a name="Circuit-save_state"><strong>save_state</strong></a>(self)</dt><dd><tt>Save&nbsp;all&nbsp;the&nbsp;variables&nbsp;to&nbsp;the&nbsp;database</tt></dd></dl>
+
+<dl><dt><a name="Circuit-start_loop"><strong>start_loop</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>connection</strong></dt>
+<dd><tt>Connection&nbsp;to&nbsp;MongoDB.</tt></dd>
+</dl>
+<dl><dt><strong>db</strong></dt>
+<dd><tt>A&nbsp;Mongo&nbsp;database.</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>Tick</strong> = datetime.timedelta(0, 0, 1000)</dl>
+
+<dl><dt><strong>VariableTypes</strong> = {'ConstSource': &lt;class 'home_brains.const_source.ConstSource'&gt;, 'ExpressionPipe': &lt;class 'home_brains.expression_pipe.ExpressionPipe'&gt;, 'FmSink': &lt;class 'home_brains.fm_sink.FmSink'&gt;, 'GpioSink': &lt;class 'home_brains.gpio_sink.GpioSink'&gt;, 'RegexpPipe': &lt;class 'home_brains.regexp_pipe.RegexpPipe'&gt;, 'ShellSource': &lt;class 'home_brains.shell_source.ShellSource'&gt;, 'SpeakingPipe': &lt;class 'home_brains.speaking_pipe.SpeakingPipe'&gt;, 'WebSource': &lt;class 'home_brains.web_source.WebSource'&gt;, 'XpathPipe': &lt;class 'home_brains.xpath_pipe.XpathPipe'&gt;}</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-mktime"><strong>mktime</strong></a>(...)</dt><dd><tt><a href="#-mktime">mktime</a>(tuple)&nbsp;-&gt;&nbsp;floating&nbsp;point&nbsp;number<br>
+&nbsp;<br>
+Convert&nbsp;a&nbsp;time&nbsp;tuple&nbsp;in&nbsp;local&nbsp;time&nbsp;to&nbsp;seconds&nbsp;since&nbsp;the&nbsp;Epoch.</tt></dd></dl>
+ <dl><dt><a name="-sleep"><strong>sleep</strong></a>(...)</dt><dd><tt><a href="#-sleep">sleep</a>(seconds)<br>
+&nbsp;<br>
+Delay&nbsp;execution&nbsp;for&nbsp;a&nbsp;given&nbsp;number&nbsp;of&nbsp;seconds.&nbsp;&nbsp;The&nbsp;argument&nbsp;may&nbsp;be<br>
+a&nbsp;floating&nbsp;point&nbsp;number&nbsp;for&nbsp;subsecond&nbsp;precision.</tt></dd></dl>
+</td></tr></table>
+</body></html>

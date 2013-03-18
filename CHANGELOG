@@ -1,0 +1,4 @@
+CHANGELOG
+
+ * 0.1
+ 	System with several variables (traffic.py example) running stably with Mongo logging.

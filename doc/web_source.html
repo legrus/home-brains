@@ -1,0 +1,97 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module web_source</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>web_source</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/legrus/work/home-brains/src/home_brains/web_source.py">/home/legrus/work/home-brains/src/home_brains/web_source.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;UTF-8&nbsp;-*-<br>
+#&nbsp;https://github.com/legrus/home-brains,&nbsp;legrus,&nbsp;2013</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="home_brains.and_pipe.html">home_brains.and_pipe</a><br>
+<a href="home_brains.circuit.html">home_brains.circuit</a><br>
+<a href="home_brains.const_source.html">home_brains.const_source</a><br>
+<a href="home_brains.dummy_rpi.html">home_brains.dummy_rpi</a><br>
+</td><td width="25%" valign=top><a href="home_brains.expression_pipe.html">home_brains.expression_pipe</a><br>
+<a href="home_brains.fm_sink.html">home_brains.fm_sink</a><br>
+<a href="home_brains.gpio_sink.html">home_brains.gpio_sink</a><br>
+<a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top><a href="home_brains.regexp_pipe.html">home_brains.regexp_pipe</a><br>
+<a href="home_brains.shell_source.html">home_brains.shell_source</a><br>
+<a href="home_brains.speaking_pipe.html">home_brains.speaking_pipe</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="urllib2.html">urllib2</a><br>
+<a href="home_brains.variable.html">home_brains.variable</a><br>
+<a href="home_brains.web_source.html">home_brains.web_source</a><br>
+<a href="home_brains.xpath_pipe.html">home_brains.xpath_pipe</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="home_brains.variable.html#Variable">home_brains.variable.Variable</a>(<a href="__builtin__.html#object">__builtin__.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="web_source.html#WebSource">WebSource</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="WebSource">class <strong>WebSource</strong></a>(<a href="home_brains.variable.html#Variable">home_brains.variable.Variable</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Gets&nbsp;its&nbsp;value&nbsp;from&nbsp;the&nbsp;web.&nbsp;Fetches&nbsp;url&nbsp;given&nbsp;by&nbsp;param&nbsp;or&nbsp;(if&nbsp;it's&nbsp;empty)&nbsp;by&nbsp;first&nbsp;input<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="web_source.html#WebSource">WebSource</a></dd>
+<dd><a href="home_brains.variable.html#Variable">home_brains.variable.Variable</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="WebSource-process"><strong>process</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="WebSource-url"><strong>url</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>UserAgent</strong> = 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5'</dl>
+
+<hr>
+Methods inherited from <a href="home_brains.variable.html#Variable">home_brains.variable.Variable</a>:<br>
+<dl><dt><a name="WebSource-__init__"><strong>__init__</strong></a>(self, _id, _param, _inputs<font color="#909090">=[]</font>, _options<font color="#909090">={}</font>)</dt></dl>
+
+<dl><dt><a name="WebSource-get_option"><strong>get_option</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="WebSource-preprocess"><strong>preprocess</strong></a>(self)</dt><dd><tt>If&nbsp;any&nbsp;of&nbsp;the&nbsp;inputs&nbsp;has&nbsp;an&nbsp;error&nbsp;flag,&nbsp;this&nbsp;pipe&nbsp;would&nbsp;also&nbsp;have&nbsp;error&nbsp;on</tt></dd></dl>
+
+<dl><dt><a name="WebSource-serialize"><strong>serialize</strong></a>(self)</dt><dd><tt>Not&nbsp;really&nbsp;a&nbsp;cast&nbsp;to&nbsp;string,&nbsp;but&nbsp;to&nbsp;a&nbsp;dictionary</tt></dd></dl>
+
+<dl><dt><a name="WebSource-value_to_save"><strong>value_to_save</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="home_brains.variable.html#Variable">home_brains.variable.Variable</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

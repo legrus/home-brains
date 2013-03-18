@@ -1,0 +1,5 @@
+include INSTALL.md
+include README.md
+include CHANGELOG
+include AUTHORS
+recursive-include *.py
