@@ -8,8 +8,8 @@ __version__ = '0.1'
 from variable import Variable
 
 from const_source import ConstSource
+from mic_source import MicSource
 from shell_source import ShellSource
-from speech_source import SpeechSource
 from web_source import WebSource
 
 from and_pipe import AndPipe
@@ -27,7 +27,7 @@ from play_sink import PlaySink
 VariableTypes = {
     "Variable": Variable,
     "ConstSource": ConstSource,
-    "SpeechSource": SpeechSource,
+    "MicSource": MicSource,
     "ShellSource": ShellSource,
     "WebSource": WebSource,
     "AndPipe": AndPipe,

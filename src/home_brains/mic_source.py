@@ -11,7 +11,7 @@ from time import time
 from home_brains import Variable
 
 
-class SpeechSource(Variable):
+class MicSource(Variable):
     '''
     Broadcast sound to FM with magnificent PiFM.
     Requires: pifm in $PATH, root permissions for it (e.g. suid)
@@ -19,14 +19,14 @@ class SpeechSource(Variable):
     '''
 
     def __init__(self, _id, _param, _inputs=[], _options={}, _trigger_callback=None):
-        super(SpeechSource, self).__init__(_id, _param, _inputs, _options, _trigger_callback)
+        super(MicSource, self).__init__(_id, _param, _inputs, _options, _trigger_callback)
         self.worker = None
 
     def process(self):
         # do nothing, all the processing was done in the worker thread.
         # just save the value and let the circuit manager precess the
         # downstream variables.
-        super(SpeechSource, self).process()
+        super(MicSource, self).process()
 
     def start_background_task(self):
         ''' Starts the worker (listening) thread in background '''
