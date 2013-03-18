@@ -20,13 +20,16 @@ class WebSource(Variable):
 
     def process(self):
         self.error = False
-        try:
-            req = urllib2.Request(self.url(), headers={'User-Agent': WebSource.UserAgent})
-            response = urllib2.urlopen(req)
-            self.value = response.read()
-        except urllib2.HTTPError, e:
-            logging.debug("Error: %s", e)
-            self.error = True
+        self.value = None
+
+        if self.param is not None:
+            try:
+                req = urllib2.Request(self.url(), headers={'User-Agent': WebSource.UserAgent})
+                response = urllib2.urlopen(req)
+                self.value = response.read()
+            except urllib2.HTTPError, e:
+                logging.debug("Error: %s", e)
+                self.error = True
 
         if self.value is None:
             self.error = True
